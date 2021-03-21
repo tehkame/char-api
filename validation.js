@@ -2,11 +2,15 @@ const { check, validationResult } = require('express-validator');
 
 const checks = () => [
 
-  check('character','character field must be a single character')
-    .isLength({ min: 1, max:1 }),
-  
-  check('words','no words field has been provided')
-    .isLength({ min: 1 })
+	check('character','character field must be a single character')
+		.isLength({ min: 1, max:1 }),
+	
+	check('words','words field must be an array of strings')
+		.isArray({min: 1}),
+	
+	check('words.*','words must contain only letters')
+		.isAlpha()
+	
 ];
 
 const reporter = (req, res, next) => {

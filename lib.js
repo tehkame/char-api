@@ -1,7 +1,11 @@
-function countOccurrences(searchString, inString) {
-	var searchExpression = new RegExp(searchString, 'g');
-	var occurences = (inString.match(searchExpression) || []).length;
-	return occurences.toString();
+
+function countOccurrences(character, word) {
+	const searchExpression = new RegExp(character, 'g');
+	return (word.match(searchExpression) || []).length;
 }
 
-module.exports = { countOccurrences };
+function countOccurrencesInCollection(character, words) {
+	return words.reduce((count, word) => count + countOccurrences(character, word),0);
+}
+
+module.exports = { countOccurrencesInCollection, countOccurrences };
